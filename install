@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+FLUTTER_BIN_PATH="$(command -v flutter)"
+
+if [[ -z "$FLUTTER_BIN_PATH" ]]; then
+    echo "Error: Flutter is not installed or not in PATH." >&2
+    exit 1
+fi
+
+FLUTTER_PATH="$(dirname "$(dirname "$FLUTTER_BIN_PATH")")"
+FLUTTER_TMPL_PATH="$FLUTTER_PATH/packages/flutter_tools/templates"
+
+rm -rf "$FLUTTER_TMPL_PATH/app"
+rm -f "$FLUTTER_TMPL_PATH/template_manifest.json"
+
+cp -R "$SCRIPT_DIR/app" "$FLUTTER_TMPL_PATH/app"
+cp "$SCRIPT_DIR/template_manifest.json" "$FLUTTER_TMPL_PATH/template_manifest.json"
+
+echo "Flutter template installed successfully."
