@@ -18,3 +18,9 @@ cp -R "$SCRIPT_DIR/app" "$FLUTTER_TMPL_PATH/app"
 cp "$SCRIPT_DIR/template_manifest.json" "$FLUTTER_TMPL_PATH/template_manifest.json"
 
 echo "Flutter template installed successfully."
+
+GRADLE_INIT_DIR="$HOME/.gradle/init.d"
+mkdir -p "$GRADLE_INIT_DIR"
+cp "$SCRIPT_DIR/myket-mirror.init.gradle.kts" "$GRADLE_INIT_DIR/myket-mirror.init.gradle.kts"
+
+echo "Myket Gradle mirror init script installed to $GRADLE_INIT_DIR"
